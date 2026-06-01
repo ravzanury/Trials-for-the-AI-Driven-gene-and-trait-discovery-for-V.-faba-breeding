@@ -93,7 +93,7 @@ Click the **Open in Colab** badge above, or:
 
 ### Option 2 — Local (requires ~4 GB RAM)
 ```bash
-git clone https://github.com/YOUR_USERNAME/faba-bean-dtf-gwas.git
+git clone https://github.com/ravzanury/faba-bean-dtf-gwas.git
 cd faba-bean-dtf-gwas
 pip install -r requirements.txt
 jupyter notebook notebooks/faba_bean_DTF_project.ipynb
