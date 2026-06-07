@@ -1,8 +1,8 @@
 # 🌱 AI-Driven Gene & Trait Discovery in Faba Bean
 ### A Prototype Pipeline for the PhD Position at Prof. Agnieszka Golicz Lab
-**Wageningen University & Research — Plant Breeding Chair Group**
+**Wageningen University & Research - Plant Breeding Chair Group**
 
-[![Open Master Pipeline in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/faba-bean-dtf-gwas/blob/main/notebooks/00_master_pipeline.ipynb)
+[![Open Master Pipeline in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/[github.com/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding))
 
 ---
 
@@ -32,7 +32,7 @@ Days to Flowering (DTF) was selected as the target trait because:
 
 ## Data
 
-All data is real, publicly available, and downloaded automatically inside the notebooks — no manual setup required.
+All data is real, publicly available, and downloaded automatically inside the notebooks - no manual setup required.
 
 | Dataset | Source | Content |
 |---------|--------|---------|
@@ -44,25 +44,25 @@ All data is real, publicly available, and downloaded automatically inside the no
 
 ## What Was Done and What Was Found
 
-### Module 1 — GWAS & Genomic Prediction ✅ Complete
+### Module 1 - GWAS & Genomic Prediction ✅ Complete
 
 **Method:** Per-SNP linear regression with population structure correction (top 3 PCs as covariates), Bonferroni multiple testing correction, followed by genomic prediction with Ridge Regression, Random Forest, and Gradient Boosting (5-fold cross-validation), and SHAP-based explainability.
 
 **Key findings:**
 - **9 SNPs** passed Bonferroni-corrected significance (α = 1.86 × 10⁻⁶), distributed across chromosomes 1a, 1b, 2, 3, 4, and 6
-- **Chromosome 3** harbours 3 independent significant associations — consistent with conserved legume flowering-time loci potentially related to the FT pathway
+- **Chromosome 3** harbours 3 independent significant associations - consistent with conserved legume flowering-time loci potentially related to the FT pathway
 - **Ridge Regression** achieved R² = 0.646 and Pearson r = 0.824, confirming that DTF variation is substantially explained by additive SNP effects
-- **SHAP analysis** revealed that chromosome 5 SNPs dominate the ML importance ranking — a divergence from GWAS top hits that reflects non-linear signal captured only by the tree-based model
+- **SHAP analysis** revealed that chromosome 5 SNPs dominate the ML importance ranking - a divergence from GWAS top hits that reflects non-linear signal captured only by the tree-based model
 - **3 SNPs** appeared in the top-50 of both GWAS and SHAP rankings, representing the highest-confidence candidate loci
-- Genomic inflation λ = 1.427 indicates that a kinship-matrix mixed model (e.g. GEMMA) will be needed for the full analysis — an important methodological finding from the prototype
+- Genomic inflation λ = 1.427 indicates that a kinship-matrix mixed model (e.g. GEMMA) will be needed for the full analysis - an important methodological finding from the prototype
 
-### Module 2 — SNP Annotation & Biological Grounding 🔄 In Progress
+### Module 2 - SNP Annotation & Biological Grounding 🔄 In Progress
 
 SNP candidates from Module 1 are being mapped to the nearest annotated gene in the faba bean reference genome (Jayakodi, Golicz et al., Nature 2023) using a ±100 kb window, cross-referenced against known flowering pathway genes (FT, SOC1, FLC, TFL1, LFY, AP1), with GO-term enrichment analysis on SNP-proximal genes.
 
-### Module 3 — eGWAS / RNA-seq Integration 🔄 In Progress
+### Module 3 - eGWAS / RNA-seq Integration 🔄 In Progress
 
-Vernalization RNA-seq data (PRJNA704197) is being integrated to identify differentially expressed genes between early- and late-flowering conditions, cross-reference GWAS candidate loci with expression changes, and build a multi-layer SNP → expression → phenotype evidence model — directly following the eQTL framework established in the Golicz lab's rapeseed pangenomics work (TAG, 2025).
+Vernalization RNA-seq data (PRJNA704197) is being integrated to identify differentially expressed genes between early- and late-flowering conditions, cross-reference GWAS candidate loci with expression changes, and build a multi-layer SNP → expression → phenotype evidence model - directly following the eQTL framework established in the Golicz lab's rapeseed pangenomics work (TAG, 2025).
 
 ---
 
@@ -102,11 +102,11 @@ Faba Bean Genome              |                      |
 
 ## How to Run
 
-**Option A — Full pipeline automatically (recommended):**
+**Option A - Full pipeline automatically (recommended):**
 Open `00_master_pipeline.ipynb` → `Runtime → Run All`
 All modules run in sequence. Final outputs: `master_report.html` + ZIP of all figures and results.
 
-**Option B — Module by module (in order):**
+**Option B - Module by module (in order):**
 ```
 01_gwas_genomic_prediction.ipynb  →  02_snp_annotation.ipynb  →  03_egwas_rnaseq.ipynb
 ```
