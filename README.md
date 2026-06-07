@@ -1,6 +1,6 @@
 # 🌱 Faba Bean Days-to-Flowering: Genotype → Phenotype
 ### AI-Driven Gene & Trait Discovery in Plant Breeding
-**PhD Project — Prof. Agnieszka Golicz Lab, Wageningen University & Research**
+**PhD Project - Prof. Agnieszka Golicz Lab, Wageningen University & Research**
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/faba-bean-dtf-gwas/blob/main/notebooks/faba_bean_DTF_project.ipynb)
 
@@ -20,12 +20,12 @@ This project links **real genotypic data** (539,643 SNP markers) to **phenotypic
 
 ## 📦 Dataset
 
-**ProFaba Diversity Panel** — Bornhofen et al. (2024)
+**ProFaba Diversity Panel** - Bornhofen et al. (2024)
 > Zenodo DOI: [10.5281/zenodo.13908861](https://doi.org/10.5281/zenodo.13908861)
 
 | File | Description | Size |
 |------|-------------|------|
-| `final_profaba_db.txt` | Phenotypic data — multiple traits across European environments | 2.8 MB |
+| `final_profaba_db.txt` | Phenotypic data - multiple traits across European environments | 2.8 MB |
 | `ProFaba_chrAll_...vcf.gz` | 539,643 high-quality SNP markers (VCF format) | 32.8 MB |
 
 > **No manual downloading needed.** The notebook downloads both files automatically from Zenodo.
@@ -44,7 +44,7 @@ Real SNP Data (VCF)          Real Phenotype Data
      └──────────── Align ───────────┘
                        │
               Population Structure
-                (PCA — 10 PCs)
+                (PCA - 10 PCs)
                        │
            ┌───────────┴───────────┐
            ▼                       ▼
@@ -85,13 +85,13 @@ Real SNP Data (VCF)          Real Phenotype Data
 
 ## 🚀 How to Run
 
-### Option 1 — Google Colab (recommended)
+### Option 1 - Google Colab (recommended)
 Click the **Open in Colab** badge above, or:
 1. Go to [colab.research.google.com](https://colab.research.google.com)
 2. File → Open notebook → GitHub tab
 3. Paste this repo URL and select the notebook
 
-### Option 2 — Local (requires ~4 GB RAM)
+### Option 2 - Local (requires ~4 GB RAM)
 ```bash
 git clone [https://github.com/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding]
 pip install -r requirements.txt
@@ -152,4 +152,4 @@ This starter project addresses three core PhD duties:
 
 ---
 
-*Wageningen University & Research — Plant Breeding Chair Group*
+*Wageningen University & Research - Plant Breeding Chair Group*
