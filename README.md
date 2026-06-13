@@ -1,6 +1,5 @@
 # AI-Driven Gene & Trait Discovery in Faba Bean
-### A Prototype Pipeline for the PhD Position at Prof. Agnieszka Golicz Lab
-**Wageningen University & Research — Plant Breeding Chair Group**
+
 
 [![Open Module 1 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding/blob/main/faba_bean_DTF_project.ipynb)
 
