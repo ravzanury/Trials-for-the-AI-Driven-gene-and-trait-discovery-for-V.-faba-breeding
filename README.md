@@ -1,8 +1,8 @@
-# 🌱 AI-Driven Gene & Trait Discovery in Faba Bean
+# AI-Driven Gene & Trait Discovery in Faba Bean
 ### A Prototype Pipeline for the PhD Position at Prof. Agnieszka Golicz Lab
-**Wageningen University & Research - Plant Breeding Chair Group**
+**Wageningen University & Research — Plant Breeding Chair Group**
 
-[![Open Master Pipeline in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/[github.com/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding))
+[![Open Module 1 in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding/blob/main/faba_bean_DTF_project.ipynb)
 
 ---
 
@@ -32,7 +32,7 @@ Days to Flowering (DTF) was selected as the target trait because:
 
 ## Data
 
-All data is real, publicly available, and downloaded automatically inside the notebooks - no manual setup required.
+All data is real, publicly available, and downloaded automatically inside the notebooks — no manual setup required.
 
 | Dataset | Source | Content |
 |---------|--------|---------|
@@ -44,25 +44,35 @@ All data is real, publicly available, and downloaded automatically inside the no
 
 ## What Was Done and What Was Found
 
-### Module 1 - GWAS & Genomic Prediction ✅ Complete
+### Module 1 — GWAS & Genomic Prediction ✅ Complete
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding/blob/main/faba_bean_DTF_project.ipynb)
+&nbsp;|&nbsp; [Full analysis report (PDF)](docs/DTF_GWAS_FullReport.pdf)
 
 **Method:** Per-SNP linear regression with population structure correction (top 3 PCs as covariates), Bonferroni multiple testing correction, followed by genomic prediction with Ridge Regression, Random Forest, and Gradient Boosting (5-fold cross-validation), and SHAP-based explainability.
 
 **Key findings:**
 - **9 SNPs** passed Bonferroni-corrected significance (α = 1.86 × 10⁻⁶), distributed across chromosomes 1a, 1b, 2, 3, 4, and 6
-- **Chromosome 3** harbours 3 independent significant associations - consistent with conserved legume flowering-time loci potentially related to the FT pathway
+- **Chromosome 3** harbours 3 independent significant associations — consistent with conserved legume flowering-time loci potentially related to the FT pathway
 - **Ridge Regression** achieved R² = 0.646 and Pearson r = 0.824, confirming that DTF variation is substantially explained by additive SNP effects
-- **SHAP analysis** revealed that chromosome 5 SNPs dominate the ML importance ranking - a divergence from GWAS top hits that reflects non-linear signal captured only by the tree-based model
-- **3 SNPs** appeared in the top-50 of both GWAS and SHAP rankings, representing the highest-confidence candidate loci
-- Genomic inflation λ = 1.427 indicates that a kinship-matrix mixed model (e.g. GEMMA) will be needed for the full analysis - an important methodological finding from the prototype
+- **SHAP vs GWAS divergence:** chromosome 5 SNPs dominate the ML importance ranking despite not appearing among GWAS top hits. This likely reflects non-additive, epistatic signal that linear regression cannot capture — chromosome 5 in faba bean harbours a major photoperiod-response region (LD with *FUL*/*SOC1* homologs), and ensemble methods are sensitive to combinations of SNPs with individually sub-threshold effects. The 3 SNPs appearing in the top-50 of *both* GWAS and SHAP rankings represent the highest-confidence causal candidates
+- Genomic inflation λ = 1.427 indicates that a kinship-matrix mixed model (e.g. GEMMA) will be needed for the full analysis — an important methodological finding from the prototype
 
-### Module 2 - SNP Annotation & Biological Grounding 🔄 In Progress
+### Module 2 — SNP Annotation & Biological Grounding ✅ Complete
 
-SNP candidates from Module 1 are being mapped to the nearest annotated gene in the faba bean reference genome (Jayakodi, Golicz et al., Nature 2023) using a ±100 kb window, cross-referenced against known flowering pathway genes (FT, SOC1, FLC, TFL1, LFY, AP1), with GO-term enrichment analysis on SNP-proximal genes.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding/blob/main/project2_snp_annotation.ipynb)
 
-### Module 3 - eGWAS / RNA-seq Integration 🔄 In Progress
+**Method:** SNP candidates from Module 1 are mapped to the nearest annotated gene in the faba bean reference genome (Jayakodi, Golicz et al., Nature 2023) using a ±100 kb window. Genes are cross-referenced against known flowering pathway genes (FT, SOC1, FLC, CO, TFL1, LFY, AP1, SVP). GO-term–style enrichment is computed via Fisher's exact test on functional descriptions, with Benjamini–Hochberg FDR correction. A SNP → Gene bipartite network is produced colour-coded by pathway category.
 
-Vernalization RNA-seq data (PRJNA704197) is being integrated to identify differentially expressed genes between early- and late-flowering conditions, cross-reference GWAS candidate loci with expression changes, and build a multi-layer SNP → expression → phenotype evidence model - directly following the eQTL framework established in the Golicz lab's rapeseed pangenomics work (TAG, 2025).
+**Outputs:** `gwas_shap_annotated_SNPs.csv`, `go_enrichment_results.csv`, GO enrichment barplot, SNP→Gene network figure.
+
+### Module 3 — eGWAS / RNA-seq Integration ✅ Complete
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ravzanury/Trials-for-the-AI-Driven-gene-and-trait-discovery-for-V.-faba-breeding/blob/main/project3_egwas_rnaseq.ipynb)
+
+**Method:** Vernalization RNA-seq data (PRJNA704197, Yuan et al. 2021) is used to identify differentially expressed genes (DEGs) between vernalized and control faba bean buds (Mann-Whitney U, FDR < 0.05, |log2FC| > 1). DEGs are cross-referenced with GWAS candidate genes from Module 2. A Random Forest classifier trained on the top-500 variable genes uses SHAP to identify which genes most strongly distinguish flowering conditions. A multi-layer evidence score combines GWAS association, DEG significance, and expression SHAP to prioritise candidate genes. Full FASTQ-based pipeline code (HISAT2 → featureCounts → DESeq2) is provided as Track B for the complete PhD analysis.
+
+**Outputs:** Expression PCA, volcano plot, SHAP expression importance figure, expression heatmap, `gwas_deg_overlap.csv`, `multi_layer_candidates.csv`.
 
 ---
 
@@ -102,46 +112,45 @@ Faba Bean Genome              |                      |
 
 ## How to Run
 
-**Option A - Full pipeline automatically (recommended):**
-Open `00_master_pipeline.ipynb` → `Runtime → Run All`
-All modules run in sequence. Final outputs: `master_report.html` + ZIP of all figures and results.
+**Option A — Run each module in Colab (recommended):**
 
-**Option B - Module by module (in order):**
+Run the notebooks in order. Each notebook reads the CSV outputs of the previous one.
+
 ```
-01_gwas_genomic_prediction.ipynb  →  02_snp_annotation.ipynb  →  03_egwas_rnaseq.ipynb
+faba_bean_DTF_project.ipynb  →  project2_snp_annotation.ipynb  →  project3_egwas_rnaseq.ipynb
 ```
-Each notebook reads the CSV outputs of the previous one.
+
+**Option B — Local:**
+```bash
+pip install -r requirements.txt
+jupyter notebook faba_bean_DTF_project.ipynb
+```
 
 ---
 
 ## Repository Structure
 
 ```
-faba-bean-dtf-gwas/
-├── notebooks/
-│   ├── 00_master_pipeline.ipynb          ← Run All for full pipeline
-│   ├── 01_gwas_genomic_prediction.ipynb
-│   ├── 02_snp_annotation.ipynb
-│   └── 03_egwas_rnaseq.ipynb
-├── data/                                  ← Auto-downloaded by notebooks
-├── results/                               ← CSV outputs
-├── figures/                               ← PNG figures
+Trials-for-the-AI-Driven.../
+├── faba_bean_DTF_project.ipynb        ← Module 1: GWAS + ML (complete)
+├── project2_snp_annotation.ipynb      ← Module 2: SNP annotation (complete)
+├── project3_egwas_rnaseq.ipynb        ← Module 3: eGWAS / RNA-seq (complete)
 ├── docs/
-│   └── project_rationale.md              ← Scientific rationale
+│   ├── DTF_GWAS_FullReport.pdf        ← Full Module 1 analysis report
+│   └── project_rationale.md           ← Scientific rationale
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Planned Extensions (PhD Roadmap)
+## Research Directions (PhD Scope)
 
-1. Full-panel GWAS with all 539,643 SNPs and kinship-matrix mixed model
-2. Real RNA-seq alignment pipeline (HISAT2 → featureCounts → DESeq2)
-3. Single-cell RNA-seq integration for cell-type-specific eQTL mapping
-4. Structural variant features following Golicz et al. (TAG, 2025) pangenome approach
-5. Graph neural network for SNP → gene → trait relationship modelling
-6. Multi-environment G×E interaction analysis
+1. Full-panel GWAS with all 539,643 SNPs and kinship-matrix mixed model (GEMMA/BOLT-LMM)
+2. Real RNA-seq alignment pipeline (HISAT2 → featureCounts → DESeq2) — Track B code in Module 3
+3. Multi-environment G×E interaction analysis for DTF and other agronomic traits
+4. Structural variant features following the Golicz et al. (TAG, 2025) pangenome approach
+5. Integration of additional ProFaba traits (seed yield, plant height) into multi-trait models
 
 ---
 
@@ -152,4 +161,3 @@ faba-bean-dtf-gwas/
 - **Golicz A.A.** et al. (2025). Structural variants in *B. napus* pangenomes affect eQTL analysis. *Theoretical and Applied Genetics*.
 - Yuan X. et al. (2021). Vernalization-responsive transcriptomics in faba bean. *Front. Genetics* 12:656137.
 - Lundberg S.M. & Lee S.I. (2017). A unified approach to interpreting model predictions. *NeurIPS* 30.
-
